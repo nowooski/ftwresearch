@@ -6,697 +6,260 @@
     <title>FTW Research — Polling &amp; Public Opinion Research</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Söhne:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #0a0f0d;
             --paper: #f6f5f0;
-            --cream: #edeae2;
             --sage: #4a6741;
             --sage-light: #e8ede6;
             --sage-dark: #2d3f28;
-            --warm: #8b7355;
-            --warm-light: #f0ebe3;
             --text: #2c2c2c;
             --text-dim: #6b6b6b;
             --border: #d5d0c8;
             --white: #ffffff;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
-
         body {
             font-family: 'IBM Plex Sans', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--text);
             line-height: 1.65;
-            font-weight: 400;
             font-size: 16px;
         }
 
-        /* ---- NAV ---- */
+        /* NAV */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             background: rgba(246,245,240,0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
-            transition: box-shadow 0.3s;
         }
-
-        nav.scrolled { box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
-
         .nav-inner {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 64px;
+            max-width: 1080px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center; height: 64px;
         }
-
         .logo {
             font-family: 'Instrument Serif', Georgia, serif;
-            font-size: 1.5rem;
-            color: var(--ink);
-            text-decoration: none;
-            letter-spacing: -0.02em;
+            font-size: 1.5rem; color: var(--ink); text-decoration: none; letter-spacing: -0.02em;
         }
-
         .logo span { color: var(--sage); }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a {
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            transition: color 0.2s;
+            text-decoration: none; color: var(--text-dim); font-size: 0.85rem;
+            font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; transition: color 0.2s;
         }
-
         .nav-links a:hover { color: var(--sage-dark); }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+        .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; }
 
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--ink);
-            margin: 5px 0;
-            transition: all 0.3s;
-        }
-
-        /* ---- HERO ---- */
-        .hero {
-            padding: 10rem 2rem 6rem;
-            max-width: 1080px;
-            margin: 0 auto;
-        }
-
+        /* HERO */
+        .hero { padding: 10rem 2rem 6rem; max-width: 1080px; margin: 0 auto; animation: fadeUp 0.6s ease both; }
         .hero-eyebrow {
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--sage);
-            margin-bottom: 1.5rem;
+            font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--sage); margin-bottom: 1.5rem;
         }
-
         .hero h1 {
             font-family: 'Instrument Serif', Georgia, serif;
-            font-size: clamp(2.8rem, 6vw, 4.2rem);
-            font-weight: 400;
-            line-height: 1.15;
-            color: var(--ink);
-            max-width: 720px;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
+            font-size: clamp(2.8rem, 6vw, 4.2rem); font-weight: 400; line-height: 1.15;
+            color: var(--ink); max-width: 720px; margin-bottom: 1.5rem; letter-spacing: -0.02em;
         }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: var(--text-dim);
-            max-width: 540px;
-            line-height: 1.7;
-            font-weight: 300;
-        }
-
+        .hero p { font-size: 1.15rem; color: var(--text-dim); max-width: 540px; line-height: 1.7; font-weight: 300; }
         .hero-cta {
-            margin-top: 2.5rem;
-            display: inline-block;
-            padding: 0.85rem 2.2rem;
-            background: var(--sage-dark);
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-radius: 4px;
-            transition: background 0.2s, transform 0.1s;
+            margin-top: 2.5rem; display: inline-block; padding: 0.85rem 2.2rem;
+            background: var(--sage-dark); color: var(--white); text-decoration: none;
+            font-size: 0.9rem; font-weight: 500; border-radius: 4px; transition: background 0.2s, transform 0.1s;
         }
-
         .hero-cta:hover { background: var(--sage); transform: translateY(-1px); }
 
-        /* ---- SECTIONS ---- */
-        section {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
+        /* SECTIONS */
+        section { max-width: 1080px; margin: 0 auto; padding: 5rem 2rem; animation: fadeUp 0.6s ease both; }
         .section-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--sage);
-            margin-bottom: 1rem;
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--sage); margin-bottom: 1rem;
         }
-
         .section-title {
             font-family: 'Instrument Serif', Georgia, serif;
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
-            font-weight: 400;
-            color: var(--ink);
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.01em;
+            font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 400;
+            color: var(--ink); margin-bottom: 1.5rem;
         }
+        .divider { width: 100%; height: 1px; background: var(--border); max-width: 1080px; margin: 0 auto; }
 
-        .divider {
-            width: 100%;
-            height: 1px;
-            background: var(--border);
-            margin: 0 auto;
-            max-width: 1080px;
-        }
-
-        /* ---- ABOUT ---- */
-        .about-text {
-            max-width: 640px;
-            font-size: 1.05rem;
-            line-height: 1.75;
-            color: var(--text);
-        }
-
+        /* ABOUT */
+        .about-text { max-width: 640px; font-size: 1.05rem; line-height: 1.75; }
         .about-text p { margin-bottom: 1.25rem; }
-
         .founder {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            margin-top: 2.5rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
+            display: flex; align-items: center; gap: 1.25rem;
+            margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border);
         }
-
         .founder-avatar {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--sage-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Instrument Serif', Georgia, serif;
-            font-size: 1.4rem;
-            color: var(--sage-dark);
-            flex-shrink: 0;
+            width: 56px; height: 56px; border-radius: 50%; background: var(--sage-light);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Instrument Serif', Georgia, serif; font-size: 1.4rem; color: var(--sage-dark); flex-shrink: 0;
         }
+        .founder-name { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+        .founder-title { font-size: 0.85rem; color: var(--text-dim); }
 
-        .founder-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--ink);
-        }
-
-        .founder-title {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-        }
-
-        /* ---- SERVICES ---- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
+        /* SERVICES */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
         .service-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 2rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            background: var(--white); border: 1px solid var(--border); border-radius: 6px;
+            padding: 2rem; transition: border-color 0.2s, box-shadow 0.2s;
         }
-
-        .service-card:hover {
-            border-color: var(--sage);
-            box-shadow: 0 2px 12px rgba(74,103,65,0.08);
-        }
-
-        .service-icon {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-        }
-
+        .service-card:hover { border-color: var(--sage); box-shadow: 0 2px 12px rgba(74,103,65,0.08); }
+        .service-icon { font-size: 1.6rem; margin-bottom: 1rem; }
         .service-card h3 {
             font-family: 'Instrument Serif', Georgia, serif;
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: var(--ink);
-            margin-bottom: 0.75rem;
+            font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 0.75rem;
         }
+        .service-card p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
 
-        .service-card p {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            line-height: 1.6;
-        }
-
-        /* ---- REPORTS ---- */
-        .reports-list {
-            margin-top: 2rem;
-        }
-
-        .report-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border);
-            gap: 2rem;
-        }
-
-        .report-item:first-child {
-            border-top: 1px solid var(--border);
-        }
-
-        .report-title {
-            font-family: 'Instrument Serif', Georgia, serif;
-            font-size: 1.2rem;
-            color: var(--ink);
-        }
-
-        .report-meta {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            margin-top: 0.3rem;
-        }
-
-        .report-tag {
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--sage);
-            background: var(--sage-light);
-            padding: 0.3rem 0.7rem;
-            border-radius: 3px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .reports-note {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            font-style: italic;
-        }
-
-        /* ---- CONTACT ---- */
+        /* CONTACT */
         .contact-section {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 3rem;
-            max-width: 580px;
-            margin-top: 2rem;
+            background: var(--white); border: 1px solid var(--border); border-radius: 6px;
+            padding: 3rem; max-width: 580px; margin-top: 2rem;
         }
-
-        .contact-row {
-            margin-bottom: 1.25rem;
-        }
-
-        .contact-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-bottom: 0.3rem;
-        }
-
-        .contact-value {
-            font-size: 1.05rem;
-            color: var(--ink);
-        }
-
-        .contact-value a {
-            color: var(--sage-dark);
-            text-decoration: none;
-            border-bottom: 1px solid var(--sage-light);
-            transition: border-color 0.2s;
-        }
-
+        .contact-row { margin-bottom: 1.25rem; }
+        .contact-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.3rem; }
+        .contact-value { font-size: 1.05rem; color: var(--ink); }
+        .contact-value a { color: var(--sage-dark); text-decoration: none; border-bottom: 1px solid var(--sage-light); }
         .contact-value a:hover { border-color: var(--sage); }
 
-        /* ---- FOOTER ---- */
+        /* FOOTER */
         footer {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
+            max-width: 1080px; margin: 0 auto; padding: 3rem 2rem;
             border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 1rem;
+            display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem;
         }
-
-        .footer-left {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-links a {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
+        .footer-left { font-size: 0.8rem; color: var(--text-dim); }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { font-size: 0.8rem; color: var(--text-dim); text-decoration: none; }
         .footer-links a:hover { color: var(--sage-dark); }
 
-        /* ---- LEGAL PAGES ---- */
-        .legal-page {
-            display: none;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 8rem 2rem 5rem;
-        }
+        /* ANIMATION */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
-        .legal-page.active { display: block; }
-
-        .legal-page h1 {
-            font-family: 'Instrument Serif', Georgia, serif;
-            font-size: 2rem;
-            color: var(--ink);
-            margin-bottom: 0.5rem;
-        }
-
-        .legal-page .updated {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            margin-bottom: 2.5rem;
-        }
-
-        .legal-page h2 {
-            font-family: 'Instrument Serif', Georgia, serif;
-            font-size: 1.25rem;
-            font-weight: 400;
-            color: var(--ink);
-            margin-top: 2.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .legal-page p {
-            font-size: 0.95rem;
-            color: var(--text);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .legal-back {
-            display: inline-block;
-            margin-top: 2rem;
-            font-size: 0.85rem;
-            color: var(--sage-dark);
-            text-decoration: none;
-            border-bottom: 1px solid var(--sage-light);
-        }
-
-        .legal-back:hover { border-color: var(--sage); }
-
-        /* ---- MAIN CONTENT WRAPPER ---- */
-        #mainContent { display: block; }
-        #mainContent.hidden { display: none; }
-
-        /* ---- MOBILE ---- */
+        /* MOBILE */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .nav-links.open {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 64px;
-                left: 0;
-                right: 0;
-                background: var(--paper);
-                border-bottom: 1px solid var(--border);
-                padding: 1.5rem 2rem;
-                gap: 1.25rem;
+                display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0;
+                background: var(--paper); border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; gap: 1.25rem;
             }
             .hamburger { display: block; }
             .hero { padding: 8rem 1.5rem 4rem; }
             section { padding: 3.5rem 1.5rem; }
             .contact-section { padding: 2rem; }
-            .report-item { flex-direction: column; gap: 0.5rem; }
             footer { flex-direction: column; }
-        }
-
-        /* ---- ANIMATIONS ---- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
+<nav>
     <div class="nav-inner">
-        <a href="#" class="logo" onclick="showMain()">FTW <span>Research</span></a>
+        <a href="/" class="logo">FTW <span>Research</span></a>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#about" onclick="showMain()">About</a></li>
-            <li><a href="#services" onclick="showMain()">Services</a></li>
-            <li><a href="#contact" onclick="showMain()">Contact</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
             <span></span><span></span><span></span>
         </button>
     </div>
 </nav>
 
-<!-- MAIN CONTENT -->
-<div id="mainContent">
+<div class="hero">
+    <div class="hero-eyebrow">Independent Polling &amp; Research</div>
+    <h1>Affordable research for campaigns, communities, and organizations</h1>
+    <p>FTW Research provides public opinion polling, voter analysis, and strategic consulting — built for clients who need real data without the six-figure price tag.</p>
+    <a href="#contact" class="hero-cta">Get in touch</a>
+</div>
 
-    <!-- HERO -->
-    <div class="hero fade-in">
-        <div class="hero-eyebrow">Independent Polling &amp; Research</div>
-        <h1>Affordable research for campaigns, communities, and organizations</h1>
-        <p>FTW Research provides public opinion polling, voter analysis, and strategic consulting — built for clients who need real data without the six-figure price tag.</p>
-        <a href="#contact" class="hero-cta">Get in touch</a>
+<div class="divider"></div>
+
+<section id="about">
+    <div class="section-label">About</div>
+    <div class="section-title">Data-driven insight, independently delivered</div>
+    <div class="about-text">
+        <p>FTW Research is an independent polling and research firm specializing in affordable, rigorous public opinion research. We work with campaigns, advocacy organizations, local governments, and community groups who need actionable data to make better decisions.</p>
+        <p>We combine modern survey technology — SMS-to-web polling, automated phone surveys, and targeted voter file analysis — with sound methodology to deliver results at a fraction of the cost of traditional polling firms. Our approach emphasizes transparency, statistical rigor, and practical recommendations.</p>
+        <p>Whether you need a baseline poll for a ballot measure, message testing for a campaign, or a community satisfaction survey, we design and execute research that gives you the numbers you need to act with confidence.</p>
     </div>
-
-    <div class="divider"></div>
-
-    <!-- ABOUT -->
-    <section id="about" class="fade-in">
-        <div class="section-label">About</div>
-        <div class="section-title">Data-driven insight, independently delivered</div>
-        <div class="about-text">
-            <p>FTW Research is an independent polling and research firm specializing in affordable, rigorous public opinion research. We work with campaigns, advocacy organizations, local governments, and community groups who need actionable data to make better decisions.</p>
-            <p>We combine modern survey technology — SMS-to-web polling, automated phone surveys, and targeted voter file analysis — with sound methodology to deliver results at a fraction of the cost of traditional polling firms. Our approach emphasizes transparency, statistical rigor, and practical recommendations.</p>
-            <p>Whether you need a baseline poll for a ballot measure, message testing for a campaign, or a community satisfaction survey, we design and execute research that gives you the numbers you need to act with confidence.</p>
+    <div class="founder">
+        <div class="founder-avatar">WN</div>
+        <div>
+            <div class="founder-name">Wally Nowinski</div>
+            <div class="founder-title">Founder &amp; Principal Researcher</div>
         </div>
-        <div class="founder">
-            <div class="founder-avatar">WN</div>
-            <div>
-                <div class="founder-name">Wally Nowinski</div>
-                <div class="founder-title">Founder &amp; Principal Researcher</div>
-            </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="services">
+    <div class="section-label">Services</div>
+    <div class="section-title">What we do</div>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">&#x1F4CA;</div>
+            <h3>Public Opinion Polling</h3>
+            <p>Baseline and tracking polls for ballot measures, candidates, and policy issues. SMS-to-web and IVR methodologies that reach real voters at a fraction of traditional costs.</p>
         </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- SERVICES -->
-    <section id="services" class="fade-in">
-        <div class="section-label">Services</div>
-        <div class="section-title">What we do</div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">📊</div>
-                <h3>Public Opinion Polling</h3>
-                <p>Baseline and tracking polls for ballot measures, candidates, and policy issues. SMS-to-web and IVR methodologies that reach real voters at a fraction of traditional costs.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🎯</div>
-                <h3>Message Testing</h3>
-                <p>Test which arguments move voters before you spend on mail and ads. We design and field message-testing polls that tell you exactly which frames resonate with which audiences.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📋</div>
-                <h3>Voter File Analysis</h3>
-                <p>Turnout modeling, demographic analysis, and voter segmentation using official registration data. Know who your electorate is and how to reach them efficiently.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🏛️</div>
-                <h3>Community Surveys</h3>
-                <p>Resident satisfaction surveys, needs assessments, and stakeholder research for local governments, nonprofits, and community organizations.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📈</div>
-                <h3>Opposition Research</h3>
-                <p>Deep-dive analysis of ballot measure language, public records, financial projections, and policy documents. Know the facts before your opponents do.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💡</div>
-                <h3>Strategic Consulting</h3>
-                <p>Campaign strategy informed by data, not guesswork. We help you interpret research findings and translate them into winning messaging and targeting decisions.</p>
-            </div>
+        <div class="service-card">
+            <div class="service-icon">&#x1F3AF;</div>
+            <h3>Message Testing</h3>
+            <p>Test which arguments move voters before you spend on mail and ads. We design and field message-testing polls that tell you exactly which frames resonate with which audiences.</p>
         </div>
-    </section>
-
-
-
-    <div class="divider"></div>
-
-    <!-- CONTACT -->
-    <section id="contact" class="fade-in">
-        <div class="section-label">Contact</div>
-        <div class="section-title">Let's talk about your research needs</div>
-        <div class="contact-section">
-            <div class="contact-row">
-                <div class="contact-label">Email</div>
-                <div class="contact-value"><a href="/cdn-cgi/l/email-protection#3b4c5a5757427b5d4f4c495e485e5a49585315585456"><span class="__cf_email__" data-cfemail="f681979a9a8fb6908281849385939784959ed895999b">[email&#160;protected]</span></a></div>
-            </div>
-            <div class="contact-row">
-                <div class="contact-label">Location</div>
-                <div class="contact-value">San Francisco Bay Area, California</div>
-            </div>
+        <div class="service-card">
+            <div class="service-icon">&#x1F4CB;</div>
+            <h3>Voter File Analysis</h3>
+            <p>Turnout modeling, demographic analysis, and voter segmentation using official registration data. Know who your electorate is and how to reach them efficiently.</p>
         </div>
-    </section>
+        <div class="service-card">
+            <div class="service-icon">&#x1F3DB;</div>
+            <h3>Community Surveys</h3>
+            <p>Resident satisfaction surveys, needs assessments, and stakeholder research for local governments, nonprofits, and community organizations.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#x1F4C8;</div>
+            <h3>Opposition Research</h3>
+            <p>Deep-dive analysis of ballot measure language, public records, financial projections, and policy documents. Know the facts before your opponents do.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#x1F4A1;</div>
+            <h3>Strategic Consulting</h3>
+            <p>Campaign strategy informed by data, not guesswork. We help you interpret research findings and translate them into winning messaging and targeting decisions.</p>
+        </div>
+    </div>
+</section>
 
-</div><!-- end mainContent -->
+<div class="divider"></div>
 
-<!-- PRIVACY POLICY -->
-<div class="legal-page" id="privacyPage">
-    <h1>Privacy Policy</h1>
-    <div class="updated">Last updated: March 2026</div>
+<section id="contact">
+    <div class="section-label">Contact</div>
+    <div class="section-title">Let's talk about your research needs</div>
+    <div class="contact-section">
+        <div class="contact-row">
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:wally&#64;ftwresearch.com">wally&#64;ftwresearch.com</a></div>
+        </div>
+        <div class="contact-row">
+            <div class="contact-label">Location</div>
+            <div class="contact-value">San Francisco Bay Area, California</div>
+        </div>
+    </div>
+</section>
 
-    <h2>1. Who We Are</h2>
-    <p>FTW Research is an independent polling and research firm operated by Wally Nowinski. This policy describes how we collect, use, and protect information in connection with our research activities and SMS survey programs.</p>
-
-    <h2>2. Information We Collect</h2>
-    <p><strong>Survey responses:</strong> When you participate in one of our surveys, we collect your answers to our questions. Responses are anonymous — they are not linked to your name or phone number in any published results.</p>
-    <p><strong>Contact information:</strong> For SMS-based surveys, phone numbers are obtained from publicly available voter registration files, accessed through approved applications to county elections offices pursuant to California Elections Code Section 2194, for election and political research purposes. We may also collect email addresses when voluntarily provided.</p>
-    <p><strong>Website visitors:</strong> We do not use tracking cookies, analytics software, or third-party advertising on this website.</p>
-
-    <h2>3. How We Use Your Information</h2>
-    <p>Survey responses are used solely for public opinion research and analysis. Results are reported only in aggregate — no individual responses are ever identified by name, phone number, or address.</p>
-    <p>Phone numbers obtained from voter files are used only to deliver survey invitations and optional follow-up reminders. They are not used for any other purpose.</p>
-
-    <h2>4. Information Sharing</h2>
-    <p>We do not sell, rent, lease, or share your personal information with any third parties. We do not share your data for marketing purposes. Aggregate, anonymous survey results may be shared publicly or with commissioning clients, but no individual responses are ever identified.</p>
-
-    <h2>5. Data Retention</h2>
-    <p>Survey response data is retained for the duration of the research project and a reasonable period thereafter for verification purposes, then deleted. Phone numbers used for message delivery are not retained after the survey period concludes.</p>
-
-    <h2>6. SMS Messaging</h2>
-    <p>If you receive an SMS survey invitation from FTW Research, you may opt out at any time by replying STOP. You will receive no further messages after opting out. Standard message and data rates may apply. We send a maximum of two messages per survey: one invitation and one optional reminder.</p>
-
-    <h2>7. Your Rights</h2>
-    <p>You may request information about what data we hold about you, request deletion of your data, or opt out of future communications by contacting us at the address below.</p>
-
-    <h2>8. Contact</h2>
-    <p>FTW Research<br>Wally Nowinski<br>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b5c4a4747526b4d5f5c594e584e4a59484305484446">[email&#160;protected]</a></p>
-
-    <a href="#" class="legal-back" onclick="showMain()">← Back to FTW Research</a>
-</div>
-
-<!-- TERMS AND CONDITIONS -->
-<div class="legal-page" id="termsPage">
-    <h1>Terms &amp; Conditions</h1>
-    <div class="updated">Last updated: March 2026</div>
-
-    <h2>1. Program Name</h2>
-    <p>FTW Research SMS Survey Program</p>
-
-    <h2>2. Program Description</h2>
-    <p>FTW Research conducts SMS-based community surveys and public opinion polls. Messages are sent to registered voters and community members to gather opinions on policy issues, ballot measures, and other topics of public interest. Each survey consists of an SMS invitation containing a link to a web-based questionnaire.</p>
-
-    <h2>3. Message Frequency</h2>
-    <p>You will receive a maximum of 2 messages per survey project: one survey invitation and one optional follow-up reminder. This is not a recurring or subscription messaging program.</p>
-
-    <h2>4. Message and Data Rates</h2>
-    <p>Message and data rates may apply. Please contact your wireless carrier for details about your text messaging plan and any associated costs.</p>
-
-    <h2>5. How to Get Help</h2>
-    <p>For help or questions about this messaging program, reply <strong>HELP</strong> to any message from FTW Research, or email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9fe8fef3f3e6dff9ebe8edfaecfafeedfcf7b1fcf0f2">[email&#160;protected]</a>.</p>
-
-    <h2>6. How to Opt Out</h2>
-    <p>To stop receiving messages from FTW Research, reply <strong>STOP</strong> to any message at any time. You will receive a confirmation and no further messages will be sent. You may also email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0770666b6b7e47617370756274626675646f2964686a">[email&#160;protected]</a> to request removal.</p>
-
-    <h2>7. Consent</h2>
-    <p>By participating in an FTW Research survey, you acknowledge that you have read and agree to these terms and conditions and our <a href="#" onclick="showPrivacy()" style="color: var(--sage-dark);">Privacy Policy</a>.</p>
-
-    <h2>8. Contact Information</h2>
-    <p>FTW Research<br>Wally Nowinski<br>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abdccac7c7d2ebcddfdcd9ced8cecad9c8c385c8c4c6">[email&#160;protected]</a></p>
-
-    <a href="#" class="legal-back" onclick="showMain()">← Back to FTW Research</a>
-</div>
-
-<!-- FOOTER -->
 <footer>
-    <div class="footer-left">© 2026 FTW Research. All rights reserved.</div>
+    <div class="footer-left">&copy; 2026 FTW Research. All rights reserved.</div>
     <div class="footer-links">
-        <a href="#" onclick="showPrivacy()">Privacy Policy</a>
-        <a href="#" onclick="showTerms()">Terms &amp; Conditions</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms &amp; Conditions</a>
     </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Mobile menu
-    function toggleMenu() {
-        document.getElementById('navLinks').classList.toggle('open');
-    }
-
-    // Close menu on link click
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            document.getElementById('navLinks').classList.remove('open');
-        });
-    });
-
-    // Nav scroll shadow
-    window.addEventListener('scroll', () => {
-        document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
-    });
-
-    // Page switching
-    function showMain() {
-        document.getElementById('mainContent').classList.remove('hidden');
-        document.getElementById('privacyPage').classList.remove('active');
-        document.getElementById('termsPage').classList.remove('active');
-        window.scrollTo(0, 0);
-        return false;
-    }
-
-    function showPrivacy() {
-        document.getElementById('mainContent').classList.add('hidden');
-        document.getElementById('termsPage').classList.remove('active');
-        document.getElementById('privacyPage').classList.add('active')
+</body>
+</html>
